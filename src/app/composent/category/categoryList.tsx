@@ -1,7 +1,8 @@
-"use client"
+"use client";
 
 import { useEffect, useState } from "react";
 import { Category } from "@/app/interface/categoryDTO";
+import CreateCategoryForm from "./createCategory";
 export default function CategoriesList() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
@@ -9,41 +10,47 @@ export default function CategoriesList() {
 
   const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        console.log("API_BASE_URL:", API_BASE_URL);
+  const fetchCategories = async () => {
+    setLoading(true);
+    setError(null);
 
-        const response = await fetch(`${API_BASE_URL}/categories`);
-        if (!response.ok) {
-          throw new Error("Failed to fetch categories");
-        }
-        const data = await response.json();
-        setCategories(data);
-      } catch (err: any) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
+    try {
+      const response = await fetch(`${API_BASE_URL}/categories`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch categories");
       }
-    };
+      const data = await response.json();
+      setCategories(data);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchCategories();
-  }, [API_BASE_URL]);
-
-  if (loading) return <p>Chargement des catégories...</p>;
-  if (error) return <p>Erreur: {error}</p>;
+  }, []);
 
   return (
     <div>
       <h2 className="text-2xl font-bold mb-4">Liste des catégories</h2>
-      <ul className="list-disc pl-5">
-        {categories.map((category) => (
-          <li key={category.id} className="mb-2">
-            <span className="font-semibold">{category.name}</span>
-            {category.description && <span>: {category.description}</span>}
-          </li>
-        ))}
-      </ul>
+      <CreateCategoryForm categories={categories} onCategoryCreated={fetchCategories} />
+
+      {loading ? (
+        <p>Chargement des catégories...</p>
+      ) : error ? (
+        <p>Erreur: {error}</p>
+      ) : (
+        <ul className="list-disc pl-5">
+          {categories.map((category) => (
+            <li key={category.id} className="mb-2">
+              <span className="font-semibold">{category.name}</span>
+              {category.description && <span>: {category.description}</span>}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
