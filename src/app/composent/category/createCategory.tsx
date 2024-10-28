@@ -1,3 +1,4 @@
+// Component: CreateCategoryForm.tsx
 "use client";
 
 import { useState } from "react";
@@ -56,8 +57,8 @@ export default function CreateCategoryForm({ categories, onCategoryCreated }: Cr
   };
 
   return (
-    <div className="max-w-md mx-auto mt-8 p-6 bg-white shadow-md rounded">
-      <h2 className="text-2xl font-bold mb-4">Créer une nouvelle catégorie</h2>
+    <div className="p-6 bg-white shadow-md rounded border">
+      <h2 className="text-xl font-bold mb-4">Créer une nouvelle catégorie</h2>
 
       {error && <p className="text-red-500 mb-4">{error}</p>}
       {success && <p className="text-green-500 mb-4">{success}</p>}

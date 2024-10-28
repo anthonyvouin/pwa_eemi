@@ -1,8 +1,10 @@
+// Component: CategoriesList.tsx
 "use client";
 
 import { useEffect, useState } from "react";
 import { Category } from "@/app/interface/categoryDTO";
 import CreateCategoryForm from "./createCategory";
+
 export default function CategoriesList() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
@@ -33,24 +35,30 @@ export default function CategoriesList() {
   }, []);
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold mb-4">Liste des catégories</h2>
-      <CreateCategoryForm categories={categories} onCategoryCreated={fetchCategories} />
-
-      {loading ? (
-        <p>Chargement des catégories...</p>
-      ) : error ? (
-        <p>Erreur: {error}</p>
-      ) : (
-        <ul className="list-disc pl-5">
-          {categories.map((category) => (
-            <li key={category.id} className="mb-2">
-              <span className="font-semibold">{category.name}</span>
-              {category.description && <span>: {category.description}</span>}
-            </li>
-          ))}
-        </ul>
-      )}
+    <div className="flex flex-col md:flex-row gap-8 p-6">
+      {/* Liste des catégories */}
+      <div className="flex-1">
+        <h2 className="text-2xl font-bold mb-4">Liste des catégories</h2>
+        {loading ? (
+          <p>Chargement des catégories...</p>
+        ) : error ? (
+          <p className="text-red-500">Erreur: {error}</p>
+        ) : (
+          <ul className="list-disc pl-5 space-y-2">
+            {categories.map((category) => (
+              <li key={category.id} className="text-lg">
+                <span className="font-semibold">{category.name}</span>
+                {category.description && <span>: {category.description}</span>}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+      
+      {/* Formulaire de création de catégorie */}
+      <div className="flex-1">
+        <CreateCategoryForm categories={categories} onCategoryCreated={fetchCategories} />
+      </div>
     </div>
   );
 }
