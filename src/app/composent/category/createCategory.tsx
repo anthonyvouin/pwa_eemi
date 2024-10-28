@@ -2,12 +2,8 @@
 "use client";
 
 import { useState } from "react";
-import { Category } from "@/app/interface/categoryDTO";
+import { CreateCategoryFormProps } from "@/app/interface/categoryFormPropSDTO";
 
-interface CreateCategoryFormProps {
-  categories: Category[];
-  onCategoryCreated: () => void; 
-}
 
 export default function CreateCategoryForm({ categories, onCategoryCreated }: CreateCategoryFormProps) {
   const [name, setName] = useState<string>("");
