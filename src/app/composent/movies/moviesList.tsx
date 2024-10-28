@@ -7,9 +7,8 @@ export default function MoviesList() {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [currentPage, setCurrentPage] = useState(1); // Page actuelle
-  const moviesPerPage = 10; // Nombre de films par page
-
+  const [currentPage, setCurrentPage] = useState(1); 
+  const moviesPerPage = 10;
   const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   const fetchMovies = async () => {
