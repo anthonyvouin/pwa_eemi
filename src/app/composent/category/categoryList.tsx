@@ -1,6 +1,3 @@
-// Component: CategoriesList.tsx
-"use client";
-
 import { useEffect, useState } from "react";
 import { Category } from "@/app/interface/categoryDTO";
 import CreateCategoryForm from "./createCategory";
@@ -35,9 +32,8 @@ export default function CategoriesList() {
   }, []);
 
   return (
-    <div className="flex flex-col md:flex-row gap-8 p-6">
-      {/* Liste des catégories */}
-      <div className="flex-1">
+    <div className="flex flex-col md:flex-row h-full w-full gap-8 pb-8"> 
+      <div className="flex-1 overflow-auto">
         <h2 className="text-2xl font-bold mb-4">Liste des catégories</h2>
         {loading ? (
           <p>Chargement des catégories...</p>
@@ -54,9 +50,8 @@ export default function CategoriesList() {
           </ul>
         )}
       </div>
-      
-      {/* Formulaire de création de catégorie */}
-      <div className="flex-1">
+
+      <div className="flex-1 overflow-auto  ">
         <CreateCategoryForm categories={categories} onCategoryCreated={fetchCategories} />
       </div>
     </div>

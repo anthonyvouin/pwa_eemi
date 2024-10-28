@@ -1,9 +1,7 @@
-// Component: CreateCategoryForm.tsx
 "use client";
 
 import { useState } from "react";
 import { CreateCategoryFormProps } from "@/app/interface/categoryFormPropSDTO";
-
 
 export default function CreateCategoryForm({ categories, onCategoryCreated }: CreateCategoryFormProps) {
   const [name, setName] = useState<string>("");
@@ -53,13 +51,13 @@ export default function CreateCategoryForm({ categories, onCategoryCreated }: Cr
   };
 
   return (
-    <div className="p-6 bg-white shadow-md rounded border">
+    <div className="h-full p-6 bg-white shadow-md rounded-lg border flex flex-col justify-center items-center">
       <h2 className="text-xl font-bold mb-4">Créer une nouvelle catégorie</h2>
 
       {error && <p className="text-red-500 mb-4">{error}</p>}
       {success && <p className="text-green-500 mb-4">{success}</p>}
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="w-full max-w-lg">
         <div className="mb-4">
           <label className="block text-gray-700 font-semibold mb-2">Nom</label>
           <input
