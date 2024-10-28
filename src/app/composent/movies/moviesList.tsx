@@ -7,7 +7,7 @@ export default function MoviesList() {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [currentPage, setCurrentPage] = useState(1); 
+  const [currentPage, setCurrentPage] = useState(1);
   const moviesPerPage = 10;
   const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -29,6 +29,23 @@ export default function MoviesList() {
     }
   };
 
+  const deleteMovie = async (movieId: number) => {
+    const confirmation = window.confirm("Voulez-vous vraiment supprimer ce film ?");
+    if (!confirmation) return;
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/movies/${movieId}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) throw new Error("Erreur lors de la suppression du film");
+
+      setMovies((prevMovies) => prevMovies.filter((movie) => movie.id !== movieId));
+      alert("Le film a été supprimé avec succès.");
+    } catch (err: any) {
+      alert(`Erreur: ${err.message}`);
+    }
+  };
+
   useEffect(() => {
     fetchMovies();
   }, []);
@@ -36,7 +53,6 @@ export default function MoviesList() {
   const indexOfLastMovie = currentPage * moviesPerPage;
   const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
   const currentMovies = movies.slice(indexOfFirstMovie, indexOfLastMovie);
-
   const totalPages = Math.ceil(movies.length / moviesPerPage);
 
   const handlePreviousPage = () => {
@@ -76,15 +92,14 @@ export default function MoviesList() {
                     <p className="text-sm text-gray-500 mb-2">
                       Note: {movie.vote_average} ({movie.vote_count} votes)
                     </p>
-                    <p className="text-sm text-gray-500">
-                      Catégories:{" "}
-                      {movie.categories.map((category, index) => (
-                        <span key={category.id}>
-                          {category.name}
-                          {index < movie.categories.length - 1 ? ", " : ""}
-                        </span>
-                      ))}
-                    </p>
+
+                    {/* Bouton rouge pour supprimer le film */}
+                    <button
+                      onClick={() => deleteMovie(movie.id)}
+                      className="mt-4 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+                    >
+                      Supprimer ce film
+                    </button>
                   </div>
                 </div>
               </div>
