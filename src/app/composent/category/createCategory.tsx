@@ -26,7 +26,7 @@ export default function CreateCategoryForm({ categories, onCategoryCreated }: Cr
     }
 
     try {
-      const response = await fetch(`${API_BASE_URL}/categories`, {
+      const response = await fetch(`${API_BASE_URL}/api/categories`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

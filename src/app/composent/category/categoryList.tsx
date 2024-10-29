@@ -14,7 +14,7 @@ export default function CategoriesList() {
     setError(null);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/categories`);
+      const response = await fetch(`${API_BASE_URL}/api/categories`);
       if (!response.ok) {
         throw new Error("Failed to fetch categories");
       }

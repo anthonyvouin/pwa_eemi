@@ -16,7 +16,7 @@ export default function MoviesList() {
     setError(null);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/movies`);
+      const response = await fetch(`${API_BASE_URL}/api/movies`);
       if (!response.ok) {
         throw new Error("Failed to fetch movies");
       }
@@ -34,7 +34,7 @@ export default function MoviesList() {
     if (!confirmation) return;
 
     try {
-      const response = await fetch(`${API_BASE_URL}/movies/${movieId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/movies/${movieId}`, {
         method: "DELETE",
       });
       if (!response.ok) throw new Error("Erreur lors de la suppression du film");

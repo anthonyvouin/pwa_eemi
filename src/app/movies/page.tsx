@@ -31,7 +31,7 @@ export default function MovieForm() {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/categories`);
+      const response = await fetch(`${API_BASE_URL}/api/categories`);
       if (!response.ok) throw new Error("Error fetching categories");
       const data: Category[] = await response.json();
       setCategories(data);
@@ -84,7 +84,7 @@ export default function MovieForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${API_BASE_URL}/movies`, {
+      const response = await fetch(`${API_BASE_URL}/api/movies`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(movieData),
