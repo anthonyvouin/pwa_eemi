@@ -9,8 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next":"^15.0.2"
-
+    "next":"^15.0.2",
+    "@ducanh2912/next-pwa": "^10.2.9"
   },
 
   "devDependencies": {
