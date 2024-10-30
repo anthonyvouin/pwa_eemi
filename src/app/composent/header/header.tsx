@@ -14,7 +14,7 @@ export default function Header() {
               <a href="#" className="hover:text-gray-200">
                 DashBoard Admin
               </a>
-            </li>          
+            </li>
           </ul>
         </nav>
       </div>

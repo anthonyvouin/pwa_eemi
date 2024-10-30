@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import CategoriesList from "./composent/category/categoryList";
-import MoviesList from "./composent/movies/moviesList";
+import React, {useState} from "react";
+import CategoriesList from "@/src/app/composent/category/categoryList";
+import MoviesList from "@/src/app/composent/movies/moviesList";
+
 export default function Tabs() {
   const [activeTab, setActiveTab] = useState("categories");
 
