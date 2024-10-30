@@ -14,6 +14,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.category-list{
+  max-height: calc(100vh - 200px);
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

@@ -32,8 +32,8 @@ export default function CategoriesList() {
   }, []);
 
   return (
-    <div className="flex flex-col md:flex-row h-full w-full gap-8 pb-8"> 
-      <div className="flex-1 overflow-auto">
+    <div className="flex flex-col md:flex-row h-full w-full gap-8 pb-8 overflow-hidden ">
+      <div className="flex-1 overflow-y-scroll category-list ">
         <h2 className="text-2xl font-bold mb-4">Liste des catégories</h2>
         {loading ? (
           <p>Chargement des catégories...</p>

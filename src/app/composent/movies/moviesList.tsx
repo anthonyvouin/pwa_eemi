@@ -92,7 +92,7 @@ export default function MoviesList() {
                 <div key={movie.id} className="border-b border-gray-300 pb-4">
                   <div className="flex items-start space-x-4">
                     <img
-                      src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+                      src={movie.poster_path}
                       alt={`${movie.original_name} poster`}
                       className="w-20 h-30 object-cover rounded"
                     />
